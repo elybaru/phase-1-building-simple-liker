@@ -8,10 +8,10 @@ modal.className = "hidden"
 
 // Error message
 function displayError(error) {
-  modal.classList.remove("hidden")
+  modal.className = ""
   const errorMessage = document.querySelector("#modal-message")
   errorMessage.innerText = error
-  setTimeout()
+  setTimeout(() => modal.className = "hidden", 3000)
 }
 
 
@@ -19,9 +19,7 @@ function displayError(error) {
 
 
 const like = document.getElementsByClassName("like-glyph")
-// console.log(like)
 Array.from(like).forEach(function (element) {
-  // console.log(element)
   element.addEventListener("click", glyphClick)
 })
 
