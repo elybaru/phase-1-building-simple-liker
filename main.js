@@ -8,9 +8,10 @@ modal.className = "hidden"
 
 // Error message
 function displayError(error) {
-  setTimeout(modal.classList.remove("hidden"), 3000)
+  modal.classList.remove("hidden")
   const errorMessage = document.querySelector("#modal-message")
   errorMessage.innerText = error
+  setTimeout()
 }
 
 
