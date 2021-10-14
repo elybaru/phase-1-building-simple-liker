@@ -6,27 +6,49 @@ const FULL_HEART = '♥'
 const modal = document.getElementById("modal")
 modal.className = "hidden"
 
-
-// Event listeners
-
-
-const like = document.getElementsByClassName(".like")
-console.log(like)
-like.target.addEventListener("click", heartClick);
-// like.target.className.visibility = "hidden"
-
 // Error message
 function displayError(error) {
   modal.classList.remove("hidden")
   document.querySelector("#modal-message").innerText = error
-
 }
+
+
+// Event listeners
+
+
+const like = document.getElementsByClassName("like-glyph")
+Array.from(like).forEach(function (element) {
+  element.addEventListener("click", glyphClick)
+})
+
+
+
+
 
 // Event handlers
 
-function heartClick() {
+function glyphClick() {
+  if (like.className = "activated-heart") {
+    fullHeartClick()
+  } else {
+    emptyHeartClick()
+  }
+}
+
+function emptyHeartClick(event) {
+  mimicServerCall()
+    .then(resp => console.log(resp))
+    .catch(error => displayError(error))
   console.log(event)
   // like.className = "activated-heart"
+}
+
+function fullHeartClick(event) {
+  mimicServerCall()
+    .then(resp => console.log(resp))
+    .catch(error => displayError(error))
+
+
 }
 
 
@@ -34,6 +56,7 @@ function heartClick() {
 
 
 
+// Page load functions
 
 mimicServerCall()
   .then(resp => console.log(resp))
