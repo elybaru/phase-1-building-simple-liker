@@ -8,8 +8,9 @@ modal.className = "hidden"
 
 // Error message
 function displayError(error) {
-  modal.classList.remove("hidden")
-  document.querySelector("#modal-message").innerText = error
+  setTimeout(modal.classList.remove("hidden"), 3000)
+  const errorMessage = document.querySelector("#modal-message")
+  errorMessage.innerText = error
 }
 
 
@@ -17,40 +18,60 @@ function displayError(error) {
 
 
 const like = document.getElementsByClassName("like-glyph")
+// console.log(like)
 Array.from(like).forEach(function (element) {
+  // console.log(element)
   element.addEventListener("click", glyphClick)
 })
 
 
-
+function glyphClick(event) {
+  mimicServerCall()
+    .then(resp => console.log(resp))
+    .catch(error => displayError(error))
+  if (event.target.className === "activated-heart") {
+    event.target.className = ""
+    event.target.innerText = EMPTY_HEART
+  } else {
+    event.target.className = "activated-heart"
+    event.target.innerText = FULL_HEART
+  }
+}
 
 
 // Event handlers
 
-function glyphClick() {
-  if (like.className = "activated-heart") {
-    fullHeartClick()
-  } else {
-    emptyHeartClick()
-  }
-}
+// function glyphClick(event) {
+//   console.log(event)
+//   if (event.target.className === "activated-heart") {
+//     emptyHeartClick(event)
+//   } else {
+//     fullHeartClick(event)
+//   }
+// }
 
-function emptyHeartClick(event) {
-  mimicServerCall()
-    .then(resp => console.log(resp))
-    .catch(error => displayError(error))
-  console.log(event)
-  // like.className = "activated-heart"
-}
+// function emptyHeartClick(event) {
+//   mimicServerCall()
+//     .then(resp => console.log(resp))
+//     .catch(error => displayError(error))
+//   event.target.className = ""
+//   event.target.innerText = EMPTY_HEART
+// }
 
-function fullHeartClick(event) {
-  mimicServerCall()
-    .then(resp => console.log(resp))
-    .catch(error => displayError(error))
+// function fullHeartClick(event) {
+//   mimicServerCall()
+//     .then(resp => console.log(resp))
+//     .catch(error => displayError(error))
+//   event.target.className = "activated-heart"
+//   event.target.innerText = FULL_HEART
 
+// }
 
-}
-
+// function serverCall() {
+//   mimicServerCall()
+//     .then(resp => console.log(resp))
+//     .catch(error => displayError(error))
+// }
 
 // DOM render functions
 
@@ -58,9 +79,9 @@ function fullHeartClick(event) {
 
 // Page load functions
 
-mimicServerCall()
-  .then(resp => console.log(resp))
-  .catch(error => displayError(error))
+// mimicServerCall()
+//   .then(resp => console.log(resp))
+//   .catch(error => displayError(error))
 
 
 
