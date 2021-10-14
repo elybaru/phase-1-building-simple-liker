@@ -10,19 +10,27 @@ modal.className = "hidden"
 // Event listeners
 
 
-console.log(document.querySelectorAll(".like"))
+const like = document.getElementsByClassName(".like")
+console.log(like)
+like.target.addEventListener("click", heartClick);
+// like.target.className.visibility = "hidden"
 
 // Error message
 function displayError(error) {
   modal.classList.remove("hidden")
-  modal.innerText = error
+  document.querySelector("#modal-message").innerText = error
+
 }
 
 // Event handlers
 
-// DOM render functions
+function heartClick() {
+  console.log(event)
+  // like.className = "activated-heart"
+}
 
-// Fetch requests
+
+// DOM render functions
 
 
 
